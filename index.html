@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中山市邦仁照明科技有限公司 | Bangren Lighting</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 1.6; color: #333; }
+
+        .lang-switch {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 1001;
+        }
+        .lang-btn {
+            background: white;
+            border: 2px solid #1a365d;
+            color: #1a365d;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .lang-btn:hover {
+            background: #1a365d;
+            color: white;
+        }
+
+        .navbar { background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%); padding: 15px 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { color: white; font-size: 24px; font-weight: bold; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: white; text-decoration: none; font-size: 16px; transition: opacity 0.3s; }
+        .nav-links a:hover { opacity: 0.8; }
+
+        .hero { background: linear-gradient(135deg, #1a365d 0%, #2c5282 50%, #3182ce 100%); color: white; padding: 150px 20px 100px; text-align: center; }
+        .hero h1 { font-size: 48px; margin-bottom: 20px; }
+        .hero p { font-size: 24px; margin-bottom: 30px; opacity: 0.9; }
+        .hero .slogan { display: inline-block; padding: 15px 40px; border: 3px solid rgba(255,255,255,0.5); border-radius: 10px; font-size: 20px; margin-bottom: 40px; }
+        .hero .vision { font-size: 20px; letter-spacing: 5px; opacity: 0.8; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section-title { text-align: center; padding: 80px 20px 40px; }
+        .section-title h2 { font-size: 36px; color: #1a365d; margin-bottom: 15px; }
+        .section-title p { font-size: 18px; color: #666; }
+
+        .products { background: #f7fafc; padding-bottom: 80px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .product-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            transition: 0.3s;
+        }
+        .product-card:hover { transform: translateY(-6px); }
+
+        /* 产品图片 */
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        .series-tag { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 14px; font-weight: bold; margin-bottom: 14px; }
+        .series-n { background: #ebf8ff; color: #2c5282; }
+        .series-h { background: #f0fff4; color: #276749; }
+        .series-j { background: #fffff0; color: #975a16; }
+        .series-s { background: #faf5ff; color: #6b46c1; }
+        .series-u { background: #fff5f5; color: #c53030; }
+        .product-card h3 { font-size: 22px; color: #1a365d; margin-bottom: 10px; }
+        .product-card .highlight { color: #c53030; font-weight: bold; font-size: 17px; margin-bottom: 14px; }
+        .product-card li { list-style: none; padding: 6px 0; border-bottom: 1px solid #eee; color: #444; }
+        .product-card li:last-child { border-bottom: none; }
+
+        .advantages { padding-bottom: 80px; }
+        .adv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 26px;
+            margin-top: 20px;
+        }
+        .adv-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 32px 24px;
+            box-shadow: 0 8px 24px rgba(17,24,39,0.06);
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .adv-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 5px; height: 100%;
+            background: linear-gradient(180deg, #1a365d, #3182ce);
+        }
+        .adv-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 14px 32px rgba(26,54,93,0.12);
+        }
+        .adv-card h3 {
+            font-size: 19px;
+            color: #1a365d;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .adv-card p {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .warranty { background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%); color: white; padding: 70px 20px; }
+        .warranty-content { max-width: 1000px; margin: 0 auto; text-align: center; }
+        .warranty h2 { font-size: 34px; margin-bottom: 24px; }
+        .warranty-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 30px; }
+        .warranty-item {
+            background: rgba(255,255,255,0.1);
+            padding: 28px;
+            border-radius: 16px;
+        }
+        .warranty-item h3 { font-size: 19px; margin-bottom: 12px; }
+        .check { color: #68d391; font-size: 24px; margin-bottom: 10px; }
+
+        /* 质保技术图片 */
+        .warranty-img {
+            width: 100%;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 14px;
+            filter: brightness(0) invert(1); /* 图标变白色 */
+        }
+
+        .scenarios { background: #f7fafc; padding-bottom: 70px; }
+        .scene-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
+        .scene-card { background: white; padding: 26px; border-radius: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-top: 4px solid #3182ce; }
+        .scene-card h4 { color: #2c5282; margin-bottom: 8px; font-size: 16px; }
+        .scene-card p { color: #666; font-size: 14px; line-height: 1.5; }
+
+        .contact { padding: 70px 20px; text-align: center; }
+        .contact h2 { font-size: 34px; color: #1a365d; margin-bottom: 26px; }
+        .contact-features { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 36px; }
+        .contact-feature { padding: 22px 32px; background: #f7fafc; border-radius: 16px; }
+        .contact-feature h3 { color: #2c5282; margin-bottom: 6px; font-size: 18px; }
+
+        .contact-info-card {
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            color: white;
+            padding: 36px;
+            border-radius: 18px;
+            max-width: 560px;
+            margin: 0 auto 30px;
+        }
+        .contact-info-card h3 { font-size: 22px; margin-bottom: 20px; }
+        .contact-item { font-size: 18px; margin: 12px 0; }
+        .contact-item a { color: #90cdf4; text-decoration: none; }
+
+        .company-name { font-size: 18px; color: #666; margin: 10px 0; }
+        .vision-footer { font-size: 24px; color: #1a365d; font-weight: 500; }
+
+        .footer { background: #1a365d; color: white; text-align: center; padding: 26px 20px; font-size: 15px; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 30px; }
+            .hero p { font-size: 18px; }
+            .nav-links { display: none; }
+            .product-grid, .adv-grid { grid-template-columns: 1fr; }
+        }
+
+        .lang-en { display: none; }
+        body.english .lang-zh { display: none; }
+        body.english .lang-en { display: block; }
+    </style>
+</head>
+<body>
+
+<div class="lang-switch">
+    <button class="lang-btn" onclick="toggleLanguage()">English / 中文</button>
+</div>
+
+<!-- ================== 中文 ================== -->
+<div class="lang-zh">
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">邦仁照明</div>
+        <div class="nav-links">
+            <a href="#products">五大系列</a>
+            <a href="#advantages">技术优势</a>
+            <a href="#warranty">品质保障</a>
+            <a href="#scenarios">应用场景</a>
+            <a href="#contact">联系我们</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <h1>中山市邦仁照明科技有限公司</h1>
+    <p>24V SMD LED灯带专业制造商</p>
+    <div class="slogan">不止于灯带，为场景而亮</div>
+    <div class="vision">更健康 · 更长久</div>
+</section>
+
+<section id="products" class="products">
+    <div class="section-title">
+        <h2>五大系列 · 全场景覆盖</h2>
+        <p>根据使用场景提供专业照明解决方案</p>
+    </div>
+    <div class="container">
+        <div class="product-grid">
+
+            <!-- N系列 -->
+            <div class="product-card">
+                <img src="images/n-series.jpg" alt="N系列无压降灯带" class="product-img">
+                <span class="series-tag series-n">N系列</span>
+                <h3>无压降系列</h3>
+                <p class="highlight">真无压降 0损耗</p>
+                <ul>
+                    <li>20米无压降 7W/米（140W）</li>
+                    <li>20米无压降 10W/米（200W）★</li>
+                    <li>30米无压降 6W/米（180W）</li>
+                    <li>50米无压降 4W/米（200W）</li>
+                    <li><strong>应用：</strong>公装、长吊顶</li>
+                    <li><strong>对比：</strong>市面假无压降20米仅50-80W</li>
+                </ul>
+            </div>
+
+            <!-- H系列 -->
+            <div class="product-card">
+                <img src="images/h-series.jpg" alt="H系列主照明灯带" class="product-img">
+                <span class="series-tag series-h">H系列</span>
+                <h3>主照明系列</h3>
+                <p class="highlight">功率相同 亮度翻倍</p>
+                <ul>
+                    <li>功率：9W/米</li>
+                    <li>光效：200流明/瓦</li>
+                    <li>亮度：1700+流明/米</li>
+                    <li><strong>应用：</strong>无主灯装修、主照明</li>
+                    <li><strong>对比：</strong>普通灯带10W仅1000流明</li>
+                </ul>
+            </div>
+
+            <!-- J系列 -->
+            <div class="product-card">
+                <img src="images/j-series.jpg" alt="J系列超节能灯带" class="product-img">
+                <span class="series-tag series-j">J系列</span>
+                <h3>超节能系列</h3>
+                <p class="highlight">亮度相同 功耗减半</p>
+                <ul>
+                    <li>功率：5W/米</li>
+                    <li>光效：200流明/瓦</li>
+                    <li>亮度：970流明/米</li>
+                    <li>10米首尾亮度一致</li>
+                    <li><strong>应用：</strong>节能改造、常亮场景</li>
+                </ul>
+            </div>
+
+            <!-- S系列 -->
+            <div class="product-card">
+                <img src="images/s-series.jpg" alt="S系列双色五色灯带" class="product-img">
+                <span class="series-tag series-s">S系列</span>
+                <h3>双色五色系列</h3>
+                <p class="highlight">0损耗+纯正混色+98显指</p>
+                <ul>
+                    <li>两线五色：1800K-25000K（专利）</li>
+                    <li>三高灯带：12W+98显指+1400流明</li>
+                    <li>混色纯正无杂光</li>
+                    <li><strong>应用：</strong>高端商业、博物馆、酒店</li>
+                </ul>
+            </div>
+
+            <!-- U系列 -->
+            <div class="product-card">
+                <img src="images/u-series.jpg" alt="U系列IP68水底灯带" class="product-img">
+                <span class="series-tag series-u">U系列</span>
+                <h3>IP68水底系列</h3>
+                <p class="highlight">可水下长期使用</p>
+                <ul>
+                    <li>20米无压降 10W/米</li>
+                    <li>30米无压降 6W/米</li>
+                    <li>50米无压降 4W/米</li>
+                    <li>IP68结构防水</li>
+                    <li><strong>应用：</strong>水池、水景、泳池</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="advantages" class="advantages">
+    <div class="section-title">
+        <h2>六大核心技术优势</h2>
+        <p>技术领先，品质保证</p>
+    </div>
+    <div class="container">
+        <div class="adv-grid">
+            <div class="adv-card">
+                <h3>01. 真无压降技术</h3>
+                <p>实测功率，不虚假标注，现场可验证，长距离铺设亮度完全一致。</p>
+            </div>
+            <div class="adv-card">
+                <h3>02. 高光效 200流明/瓦</h3>
+                <p>行业领先光效，H/J系列标配，节能效果远超普通灯带。</p>
+            </div>
+            <div class="adv-card">
+                <h3>03. 高显指 98</h3>
+                <p>专业色彩还原，98显指下亮度依旧领先，真实还原物体色彩。</p>
+            </div>
+            <div class="adv-card">
+                <h3>04. 超宽色温调节</h3>
+                <p>1800K-25000K超广色温，专利两线五色，满足各类场景用光。</p>
+            </div>
+            <div class="adv-card">
+                <h3>05. IP68深度防水</h3>
+                <p>结构级防水工艺，可水下长期使用，解决行业痛点。</p>
+            </div>
+            <div class="adv-card">
+                <h3>06. 车规级安全保护</h3>
+                <p>IATF16949车规级IC，恒流驱动稳定，支持三年超长质保。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="warranty" class="warranty">
+    <div class="warranty-content">
+        <h2>质保三年 · 技术看得见</h2>
+        <p>不是空话，有三大技术支撑</p>
+        <div class="warranty-grid">
+            <div class="warranty-item">
+                <img src="images/tech-ic.jpg" alt="车规级IC" class="warranty-img">
+                <div class="check">✓</div>
+                <h3>车规级IC保护</h3>
+                <p>16949车规认证IC<br>抵御尖峰电压<br>✅ 现场可测试</p>
+            </div>
+            <div class="warranty-item">
+                <img src="images/tech-current.jpg" alt="恒流稳定" class="warranty-img">
+                <div class="check">✓</div>
+                <h3>恒流稳定</h3>
+                <p>电压飙升时<br>电流保持不变<br>✅ 现场可测试</p>
+            </div>
+            <div class="warranty-item">
+                <img src="images/tech-lm80.jpg" alt="LM80光衰报告" class="warranty-img">
+                <div class="check">✓</div>
+                <h3>LM80光衰报告</h3>
+                <p>专业光衰认证<br>寿命有据可查<br>✅ 报告可查</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="scenarios" class="scenarios">
+    <div class="section-title">
+        <h2>全场景照明解决方案</h2>
+        <p>为不同场景提供专业照明方案</p>
+    </div>
+    <div class="container">
+        <div class="scene-grid">
+            <div class="scene-card"><h4>公装长吊顶</h4><p>N系列<br>20-50米无压降</p></div>
+            <div class="scene-card"><h4>无主灯装修</h4><p>H系列<br>亮度翻倍</p></div>
+            <div class="scene-card"><h4>节能改造</h4><p>J系列<br>功耗减半</p></div>
+            <div class="scene-card"><h4>高端商业</h4><p>S系列<br>98显指</p></div>
+            <div class="scene-card"><h4>水下照明</h4><p>U系列<br>IP68防水</p></div>
+            <div class="scene-card"><h4>家居照明</h4><p>H/J系列<br>舒适节能</p></div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact">
+    <h2>携手邦仁 · 共创长久事业</h2>
+    <div class="contact-features">
+        <div class="contact-feature"><h3>✓ 靠谱产品</h3><p>技术领先，品质保证</p></div>
+        <div class="contact-feature"><h3>✓ 放心伙伴</h3><p>说到做到，诚信合作</p></div>
+        <div class="contact-feature"><h3>✓ 长期主义</h3><p>稳扎稳打，行稳致远</p></div>
+    </div>
+    <div class="contact-info-card">
+        <h3>联系我们</h3>
+        <div class="contact-item">📞 电话/WhatsApp：<a href="tel:+8613129286911">+86 13129286911</a></div>
+        <div class="contact-item">💬 微信：13510305882</div>
+    </div>
+    <p class="company-name">中山市邦仁照明科技有限公司</p>
+    <p class="vision-footer">更健康 · 更长久</p>
+</section>
+
+<footer class="footer">© 2026 中山市邦仁照明科技有限公司 版权所有</footer>
+</div>
+
+<!-- ================== 英文 ================== -->
+<div class="lang-en">
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">Bangren Lighting</div>
+        <div class="nav-links">
+            <a href="#products-en">5 Series</a>
+            <a href="#advantages-en">Technology</a>
+            <a href="#warranty-en">Warranty</a>
+            <a href="#scenarios-en">Applications</a>
+            <a href="#contact-en">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <h1>Zhongshan Bangren Lighting Technology Co., Ltd.</h1>
+    <p>Professional 24V SMD LED Strip Manufacturer</p>
+    <div class="slogan">Beyond Strips, Lighting for Scenes</div>
+    <div class="vision">Healthier · Longer-lasting</div>
+</section>
+
+<section id="products-en" class="products">
+    <div class="section-title">
+        <h2>5 Series · Full Scene Coverage</h2>
+        <p>Professional lighting solutions for every application</p>
+    </div>
+    <div class="container">
+        <div class="product-grid">
+
+            <!-- N Series -->
+            <div class="product-card">
+                <img src="images/n-series.jpg" alt="N Series Voltage Drop Free LED Strip" class="product-img">
+                <span class="series-tag series-n">N Series</span>
+                <h3>Voltage Drop Free</h3>
+                <p class="highlight">True Drop-Free, Zero Loss</p>
+                <ul>
+                    <li>20m 7W/m (140W)</li>
+                    <li>20m 10W/m (200W) ★</li>
+                    <li>30m 6W/m (180W)</li>
+                    <li>50m 4W/m (200W)</li>
+                    <li>Application: Commercial, Long Ceilings</li>
+                    <li>Compare: Fake drop-free only 50-80W</li>
+                </ul>
+            </div>
+
+            <!-- H Series -->
+            <div class="product-card">
+                <img src="images/h-series.jpg" alt="H Series Main Lighting LED Strip" class="product-img">
+                <span class="series-tag series-h">H Series</span>
+                <h3>Main Lighting</h3>
+                <p class="highlight">Same Power, Double Brightness</p>
+                <ul>
+                    <li>Power: 9W/m</li>
+                    <li>Efficacy: 200lm/W</li>
+                    <li>Brightness: 1700+ lm/m</li>
+                    <li>Application: Hidden Lighting, Main Illumination</li>
+                    <li>Compare: Ordinary 10W only 1000 lm</li>
+                </ul>
+            </div>
+
+            <!-- J Series -->
+            <div class="product-card">
+                <img src="images/j-series.jpg" alt="J Series Ultra Energy Saving LED Strip" class="product-img">
+                <span class="series-tag series-j">J Series</span>
+                <h3>Ultra Energy Saving</h3>
+                <p class="highlight">Same Brightness, Half Power</p>
+                <ul>
+                    <li>Power: 5W/m</li>
+                    <li>Efficacy: 200lm/W</li>
+                    <li>Brightness: 970 lm/m</li>
+                    <li>10m no voltage drop</li>
+                    <li>Application: Energy Retrofit, 24/7 Lighting</li>
+                </ul>
+            </div>
+
+            <!-- S Series -->
+            <div class="product-card">
+                <img src="images/s-series.jpg" alt="S Series Dual Five Color LED Strip" class="product-img">
+                <span class="series-tag series-s">S Series</span>
+                <h3>Dual/Five Color</h3>
+                <p class="highlight">Zero Loss + Pure Color + CRI 98</p>
+                <ul>
+                    <li>Two-wire five-color: 1800K-25000K (Patent)</li>
+                    <li>12W + CRI 98 + 1400lm</li>
+                    <li>Pure color mixing</li>
+                    <li>Application: High-end Commercial, Museums, Hotels</li>
+                </ul>
+            </div>
+
+            <!-- U Series -->
+            <div class="product-card">
+                <img src="images/u-series.jpg" alt="U Series IP68 Underwater LED Strip" class="product-img">
+                <span class="series-tag series-u">U Series</span>
+                <h3>IP68 Underwater</h3>
+                <p class="highlight">Can be used underwater long-term</p>
+                <ul>
+                    <li>20m 10W/m</li>
+                    <li>30m 6W/m</li>
+                    <li>50m 4W/m</li>
+                    <li>IP68 waterproof</li>
+                    <li>Application: Pools, Water Features, Fountains</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="advantages-en" class="advantages">
+    <div class="section-title">
+        <h2>6 Core Technical Advantages</h2>
+        <p>Technology leadership, quality assurance</p>
+    </div>
+    <div class="container">
+        <div class="adv-grid">
+            <div class="adv-card">
+                <h3>01. True Drop-Free Technology</h3>
+                <p>Measured power, no false labels, verifiable on-site, consistent brightness over long distances.</p>
+            </div>
+            <div class="adv-card">
+                <h3>02. High Efficacy 200lm/W</h3>
+                <p>Industry-leading efficacy, standard for H/J series, much more energy-saving than normal strips.</p>
+            </div>
+            <div class="adv-card">
+                <h3>03. High CRI 98</h3>
+                <p>Professional color rendering, leading brightness at CRI 98, restores true object colors.</p>
+            </div>
+            <div class="adv-card">
+                <h3>04. Ultra Wide CCT Range</h3>
+                <p>1800K-25000K, patented two-wire five-color, fits all scene lighting needs.</p>
+            </div>
+            <div class="adv-card">
+                <h3>05. IP68 Waterproof</h3>
+                <p>Structural waterproof design, can be used underwater long-term, solves industry pain points.</p>
+            </div>
+            <div class="adv-card">
+                <h3>06. Automotive-grade Protection</h3>
+                <p>IATF16949 certified IC, stable constant current, supports 3-year long warranty.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="warranty-en" class="warranty">
+    <div class="warranty-content">
+        <h2>3-Year Warranty · Visible Technology</h2>
+        <p>Not empty promises, backed by 3 core technologies</p>
+        <div class="warranty-grid">
+            <div class="warranty-item">
+                <img src="images/tech-ic.jpg" alt="Automotive-grade IC" class="warranty-img">
+                <div class="check">✓</div>
+                <h3>Automotive-grade IC</h3>
+                <p>ISO 16949 certified<br>Surge protection<br>✅ Testable on-site</p>
+            </div>
+            <div class="warranty-item">
+                <img src="images/tech-current.jpg" alt="Constant Current" class="warranty-img">
+                <div class="check">✓</div>
+                <h3>Constant Current</h3>
+                <p>Stable current under voltage spikes<br>✅ Testable on-site</p>
+            </div>
+            <div class="warranty-item">
+                <img src="images/tech-lm80.jpg" alt="LM80 Report" class="warranty-img">
+                <div class="check">✓</div>
+                <h3>LM80 Report</h3>
+                <p>Professional light decay certification<br>Verifiable lifespan data<br>✅ Report available</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="scenarios-en" class="scenarios">
+    <div class="section-title">
+        <h2>Full Scene Lighting Solutions</h2>
+        <p>Professional solutions for every scenario</p>
+    </div>
+    <div class="container">
+        <div class="scene-grid">
+            <div class="scene-card"><h4>Long Ceiling</h4><p>N Series<br>20-50m no drop</p></div>
+            <div class="scene-card"><h4>Hidden Lighting</h4><p>H Series<br>Double Brightness</p></div>
+            <div class="scene-card"><h4>Energy Retrofit</h4><p>J Series<br>Half Power</p></div>
+            <div class="scene-card"><h4>High-end Shop</h4><p>S Series<br>CRI 98</p></div>
+            <div class="scene-card"><h4>Underwater</h4><p>U Series<br>IP68 Waterproof</p></div>
+            <div class="scene-card"><h4>Home Lighting</h4><p>H/J Series<br>Comfort & Energy Save</p></div>
+        </div>
+    </div>
+</section>
+
+<section id="contact-en" class="contact">
+    <h2>Partner with Bangren · Build Lasting Business</h2>
+    <div class="contact-features">
+        <div class="contact-feature"><h3>✓ Reliable Products</h3><p>Technology leadership, quality assurance</p></div>
+        <div class="contact-feature"><h3>✓ Trusted Partner</h3><p>Deliver promises, honest cooperation</p></div>
+        <div class="contact-feature"><h3>✓ Long-term Thinking</h3><p>Steady growth, sustainable business</p></div>
+    </div>
+    <div class="contact-info-card">
+        <h3>Contact Us</h3>
+        <div class="contact-item">📞 Phone/WhatsApp: <a href="tel:+8613129286911">+86 13129286911</a></div>
+        <div class="contact-item">💬 WeChat: 13510305882</div>
+    </div>
+    <p class="company-name">Zhongshan Bangren Lighting Technology Co., Ltd.</p>
+    <p class="vision-footer">Healthier · Longer-lasting</p>
+</section>
+
+<footer class="footer">© 2026 Zhongshan Bangren Lighting Technology Co., Ltd. All Rights Reserved</footer>
+</div>
+
+<script>
+function toggleLanguage() { document.body.classList.toggle('english'); }
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{ e.preventDefault(); document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'}) })
+})
+</script>
+</body>
+</html>
